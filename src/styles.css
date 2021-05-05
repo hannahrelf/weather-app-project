@@ -78,3 +78,8 @@ ul {
 li {
   font-size: 18px;
 }
+
+.code-link {
+  text-align: center;
+  font-size: 12px;
+}
