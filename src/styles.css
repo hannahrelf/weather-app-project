@@ -36,25 +36,40 @@ button {
 h1 {
   font-size: 45px;
   margin: 0;
-  text-align: center;
+  text-align: left;
 }
 
 #current-temperature {
+  display: inline-block;
   font-size: 80px;
   line-height: 80px;
   text-align: center;
-  margin: 50px 0 20px 0;
+  margin: 20px 0 20px 0;
+}
+
+.units {
+  font-size: smaller;
+  opacity: 80%;
+  position: relative;
+  top: -45px;
+}
+
+.active {
+  color: #000;
+  cursor: default;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.active:hover {
+  color: #000;
+  text-decoration: none;
 }
 
 #description {
   text-align: center;
   margin-bottom: 30px;
   text-transform: capitalize;
-}
-
-.units {
-  font-size: smaller;
-  opacity: 80%;
 }
 
 .extra-info {
