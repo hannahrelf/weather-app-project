@@ -10,6 +10,12 @@ button {
   background: none;
   border: 1px solid black;
   border-radius: 5px;
+  transition: all 100ms ease-in-out;
+}
+
+button:hover {
+  background: black;
+  color: white;
 }
 
 #search-bar {
