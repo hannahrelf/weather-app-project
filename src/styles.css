@@ -100,7 +100,23 @@ ul {
 }
 
 li {
-  font-size: 18px;
+  font-size: 12px;
+}
+
+.forecast-day {
+  font-size: 16px;
+}
+.forecast-icons {
+  width: 40px;
+  display: inline-block;
+}
+
+.forecast-temperatures {
+  float: right;
+}
+
+.forecast-temperature-min {
+  opacity: 0.6;
 }
 
 .code-link {
