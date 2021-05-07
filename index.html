@@ -15,6 +15,9 @@
       integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
       crossorigin="anonymous"
     />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="src/styles.css" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
@@ -22,51 +25,55 @@
   <body>
     <div class="container">
       <form>
-        <input
-          type="search"
-          id="search-bar"
-          placeholder="Change City..."
-          autofocus="on"
-          autocomplete="off"
-        />
-        <button type="submit" id="search-button">
-          <i class="fas fa-search"></i>
-        </button>
-        <button id="location-button">
-          <i class="fas fa-location-arrow"></i>
-        </button>
-      </form>
-
-      <p id="time"></p>
+        <div class="row">
+          <div class="col-7">
+            <input
+              type="search"
+              id="search-bar"
+              placeholder="Change City..."
+              autofocus="on"
+              autocomplete="off"
+            />
+          </div>
+          <div class="col-1">
+            <button type="submit" id="search-button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+          <div class="col-1">
+            <button id="location-button">
+              <i class="fas fa-location-arrow"></i>
+            </button>
+          </div>
+        </form>
+        <div class="col-3" id="time"></div>
+      </div>
       <div class="row">
         <div class="col-8 today">
           <h1 id="city"></h1>
-          <div class="clearfix">
+          <div class="clearfix current-weather">
             <div style="float: left">
               <img src="#" alt="" id="icon" />
             </div>
             <div style="float: left">
               <p id="current-temperature"></p>
             </div>
-            <span class="units">
-              <a href="#" class="active" id="celsius-link">°C</a> |
-              <a href="#" id="fahrenheit-link">°F</a>
-            </span>
+            <span class="current-temperature-unit"> °C </span>
           </div>
           <p id="description"></p>
           <div class="row">
-            <div class="col">
+            <div class="col-7">
               <ul class="extra-info">
                 <li>Feels Like</li>
                 <li>Wind</li>
                 <li>Humidity</li>
               </ul>
             </div>
-            <div class="col">
+            <div class="col-5">
               <ul class="extra-info-values">
-                <li id="feels-like"><span class="units">°C</span></li>
-                <li id="wind"><span class="units">m/s</span></li>
-                <li id="humidity"><span class="units">%</span></li>
+                <li id="feels-like"></li>
+                <li id="wind"></li>
+                <li id="humidity"></li>
               </ul>
             </div>
           </div>

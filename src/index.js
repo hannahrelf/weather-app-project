@@ -18,9 +18,9 @@ hours = ("0" + hours).slice(-2);
 let minutes = currentTime.getMinutes();
 minutes = ("0" + minutes).slice(-2);
 
-time.innerHTML = `${day}, ${hours}:${minutes}`;
+time.innerHTML = `Last updated: <br/> ${day}, ${hours}:${minutes}`;
 
-function formatDay(timestamp) {
+function formatForecastDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -40,7 +40,9 @@ function displayForecast(response) {
         forecastHTML +
         `<br />
             <li> 
-              <span class="forecast-day">${formatDay(forecastDay.dt)}</span>
+              <span class="forecast-day">${formatForecastDay(
+                forecastDay.dt
+              )}</span>
               <img
                 src="http://openweathermap.org/img/wn/${
                   forecastDay.weather[0].icon
@@ -57,6 +59,7 @@ function displayForecast(response) {
                 >
               </p>
             </li>
+           
             `;
     }
   });
@@ -72,22 +75,21 @@ function getForecast(coordinates) {
 }
 
 function showWeather(response) {
-  celsiusTemperature = response.data.main.temp;
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#current-temperature").innerHTML = Math.round(
-    celsiusTemperature
+    response.data.main.temp
   );
   document.querySelector("#description").innerHTML =
     response.data.weather[0].description;
   document.querySelector("#feels-like").innerHTML = `${Math.round(
     response.data.main.feels_like
-  )}°C`;
+  )}<span class="units"> °C</span>`;
   document.querySelector("#wind").innerHTML = `${Math.round(
     response.data.wind.speed
-  )} m/s`;
+  )} <span class="units"> m/s</span>`;
   document.querySelector("#humidity").innerHTML = `${Math.round(
     response.data.main.humidity
-  )} %`;
+  )} <span class="units"> %</span>`;
   let iconElement = document.querySelector("#icon");
   iconElement.setAttribute(
     "src",
@@ -123,35 +125,10 @@ function getPosition(event) {
   navigator.geolocation.getCurrentPosition(findCurrentLocation);
 }
 
-function displayFahrenheitTemperature(event) {
-  event.preventDefault();
-  fahrenheitLink.classList.add("active");
-  celsiusLink.classList.remove("active");
-  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-  let temperatureElement = document.querySelector("#current-temperature");
-  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-}
-
-function displayCelsiusTemperature(event) {
-  event.preventDefault();
-  celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
-  let temperatureElement = document.querySelector("#current-temperature");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
-}
-
 let searchForm = document.querySelector("form");
 searchForm.addEventListener("submit", changeCity);
 
 let findLocation = document.querySelector("#location-button");
 findLocation.addEventListener("click", getPosition);
-
-let celsiusTemperature = null;
-
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
-
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 searchCity("London");
