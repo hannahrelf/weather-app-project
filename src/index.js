@@ -1,24 +1,25 @@
-//Show Current Time
-let currentTime = new Date();
-let time = document.querySelector("#time");
+function formatDate(timestamp) {
+  let currentTime = new Date();
+  let time = document.querySelector("#time");
 
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-let day = days[currentTime.getDay()];
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[currentTime.getDay()];
 
-let hours = currentTime.getHours();
-hours = ("0" + hours).slice(-2);
-let minutes = currentTime.getMinutes();
-minutes = ("0" + minutes).slice(-2);
+  let hours = currentTime.getHours();
+  hours = ("0" + hours).slice(-2);
+  let minutes = currentTime.getMinutes();
+  minutes = ("0" + minutes).slice(-2);
 
-time.innerHTML = `Last updated: <br/>${day} ${hours}:${minutes}`;
+  return `Last updated: <br/>${day} ${hours}:${minutes}`;
+}
 
 function formatForecastDay(timestamp) {
   let date = new Date(timestamp * 1000);
@@ -57,7 +58,6 @@ function displayForecast(response) {
                 >
               </p>
             </li>
-           
             `;
     }
   });
@@ -88,6 +88,9 @@ function showWeather(response) {
   document.querySelector("#humidity").innerHTML = `${Math.round(
     response.data.main.humidity
   )} <span class="units"> %</span>`;
+  document.querySelector("#time").innerHTML = formatDate(
+    response.data.dt * 1000
+  );
   let iconElement = document.querySelector("#icon");
   iconElement.setAttribute(
     "src",
