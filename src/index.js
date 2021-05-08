@@ -18,7 +18,7 @@ hours = ("0" + hours).slice(-2);
 let minutes = currentTime.getMinutes();
 minutes = ("0" + minutes).slice(-2);
 
-time.innerHTML = `Last updated: <br/> ${day}, ${hours}:${minutes}`;
+time.innerHTML = `Last updated: <br/>${day} ${hours}:${minutes}`;
 
 function formatForecastDay(timestamp) {
   let date = new Date(timestamp * 1000);
@@ -44,9 +44,7 @@ function displayForecast(response) {
                 forecastDay.dt
               )}</span>
               <img
-                src="http://openweathermap.org/img/wn/${
-                  forecastDay.weather[0].icon
-                }@2x.png"
+                src="src/img/${forecastDay.weather[0].icon}.png"
                 alt=""
                 class="forecast-icons"
               />
@@ -93,7 +91,7 @@ function showWeather(response) {
   let iconElement = document.querySelector("#icon");
   iconElement.setAttribute(
     "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    `src/img/${response.data.weather[0].icon}.png`
   );
   iconElement.setAttribute("alt", "response.data.weather[0].description");
 
